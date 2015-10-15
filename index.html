@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html ng-app="quoteApp">
     <head>
-
+        <link rel="stylesheet" href="styles.css" />
     </head>
     <body ng-controller="mainCtrl">
-        <input ng-model="addText" placeholder="Add New Quote Text" ng-show="addToggle"/>
-        <input ng-model="addAuthor" placeholder="Add New Quote Author" ng-show="addToggle"/>
-        <button ng-model="add" ng-click="addData()" ng-mouseover="addToggle = true; removeToggle = false; filterToggle = false">Add Quote</button>
-        <input ng-model="removeText" placeholder="Remove Quote" ng-show="removeToggle" />
-        <button ng-model="remove" ng-click="removeData()" ng-mouseover="removeToggle = true; addToggle = false; filterToggle = false">Remove Quote</button>
-        <input ng-model="filterText" placeholder="Filter text or author" ng-show="filterToggle" />
-        <button ng-model="filter" ng-click="filteredText = filterText" ng-mouseover="filterToggle = true; removeToggle = false; addToggle = false">Filter Quotes</button>
-        <ul>
-            <li ng-repeat="quote in quotes | filter:filteredText">{{quote.text}} - {{quote.author}}</li>
-        </ul>
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+
+
+        <h1>Super Important Quotes</h1>
+        <div id="card_holder">
+            <div ng-repeat="quote in quotes track by quote.text | filter:filteredText" class="quote_container">
+                <div class="quote_author">{{quote.author}}</div>
+                <div class="quote_text">{{quote.text}}</div>
+            </div>
+        </div>
+        <br />
+            <button ng-model="add" ng-click="addData()" ng-mouseover="addToggle = true; removeToggle = false; filterToggle = false">Add Quote</button>
+            <button ng-model="remove" ng-click="removeData()" ng-mouseover="removeToggle = true; addToggle = false; filterToggle = false">Remove Quote</button>
+            <button ng-model="filter" ng-click="filteredText = filterText" ng-mouseover="filterToggle = true; removeToggle = false; addToggle = false">Filter Quotes</button>
+            <input ng-model="addText" placeholder="Add New Quote Text" ng-show="addToggle"/>
+            <input ng-model="addAuthor" placeholder="Add New Quote Author" ng-show="addToggle"/>
+            <input ng-model="removeText" placeholder="Remove Quote" ng-show="removeToggle" />
+            <input ng-model="filterText" placeholder="Filter text or author" ng-show="filterToggle" />
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
         <script src="js/app.js"></script>
         <script src="js/dataService.js"></script>
         <script src="js/MainCtrl.js"></script>
